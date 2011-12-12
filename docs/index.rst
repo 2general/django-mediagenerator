@@ -10,13 +10,11 @@ Improve your user experience with amazingly fast page loads by combining, compre
 
 Take a look at the `feature comparison`_ for a quick overview and if you like django-mediagenerator please click the ``I use this!`` button on that page. Thank you!
 
-.. raw:: html
+Django mediagenerator lives on GitHub (`downloads`_, `source code`_ and `bug tracking`_).
 
-   <ul class="project-links">
-     <li><a href="http://pypi.python.org/pypi/django-mediagenerator">Download</a></li>
-     <li><a href="http://bitbucket.org/wkornewald/django-mediagenerator/src">Source</a></li>
-     <li><a href="/blog/django">Blog</a></li>
-   </ul>
+.. _downloads: https://github.com/potatolondon/django-mediagenerator/downloads
+.. _source code: https://github.com/potatolondon/django-mediagenerator
+.. _bug tracking: https://github.com/potatolondon/django-mediagenerator/issues
 
 .. toctree::
    :maxdepth: 2
@@ -77,9 +75,9 @@ Now every browser will only make one single request. Cool, isn't it?
 In the example above only IE6 and IE7 get special treatment. IE8 loads the same stylesheet as all other browsers. Of course you can extend the example to serve different stylesheets for all the different IE versions.
 
 
-.. _django-mediagenerator\: total asset management: /blog/django/2010/08/django-mediagenerator-total-asset-management
-.. _Using Sass with django-mediagenerator: /blog/django/2010/08/Using-Sass-with-django-mediagenerator
+.. _django-mediagenerator\: total asset management: http://www.allbuttonspressed.com/blog/django/2010/08/django-mediagenerator-total-asset-management
+.. _Using Sass with django-mediagenerator: http://www.allbuttonspressed.com/blog/django/2010/08/Using-Sass-with-django-mediagenerator
 .. _feature comparison: http://djangopackages.com/grids/g/asset-managers/
-.. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 1\: pyjs: /blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-1-pyjs
-.. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 2\: Drawing: /blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-2-Drawing
-.. _HTML5 offline manifests with django-mediagenerator: /blog/django/2010/11/HTML5-offline-manifests-with-django-mediagenerator
+.. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 1\: pyjs: http://www.allbuttonspressed.com/blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-1-pyjs
+.. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 2\: Drawing: http://www.allbuttonspressed.com/blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-2-Drawing
+.. _HTML5 offline manifests with django-mediagenerator: http://www.allbuttonspressed.com/blog/django/2010/11/HTML5-offline-manifests-with-django-mediagenerator

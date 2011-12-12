@@ -371,7 +371,7 @@ This example shows how to combine some files of the XUI framework:
 
 The ``concat_dev_ouput`` option allows to enforce concatenation. The ``dev_output_name`` option allows you to specify a nice human-readable file name which will appear in URLs on the development server. This is recommended for debugging purposes.
 
-.. _Using Sass with django-mediagenerator: /blog/django/2010/08/Using-Sass-with-django-mediagenerator
-.. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 1\: pyjs: /blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-1-pyjs
-.. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 2\: Drawing: /blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-2-Drawing
-.. _HTML5 offline manifests with django-mediagenerator: /blog/django/2010/11/HTML5-offline-manifests-with-django-mediagenerator
+.. _Using Sass with django-mediagenerator: http://www.allbuttonspressed.com/blog/django/2010/08/Using-Sass-with-django-mediagenerator
+.. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 1\: pyjs: http://www.allbuttonspressed.com/blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-1-pyjs
+.. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 2\: Drawing: http://www.allbuttonspressed.com/blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-2-Drawing
+.. _HTML5 offline manifests with django-mediagenerator: http://www.allbuttonspressed.com/blog/django/2010/11/HTML5-offline-manifests-with-django-mediagenerator
