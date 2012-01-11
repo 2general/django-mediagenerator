@@ -327,12 +327,34 @@ Data URIs / image sprites (TODOC)
 TODO: document me and write a nice tutorial about me :)
 
 
-Translations (i18n) bundling (TODOC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Translations (i18n) bundling
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 **Filter:** ``mediagenerator.filters.i18n.I18N``
 
-TODO: document me and write a nice tutorial about me :)
+You can define a bundle that works as a static, mediagenerator managed
+JavaScript file that provides a ``hgettext`` function and a
+``hngettext`` function. This is essentially a static version of
+`Django's javascript_catalog`_.
 
+Example:
+
+In your ``settings.py``, define a bundle that doesn't take any input
+files:
+
+.. sourcecode:: python
+
+    MEDIA_BUNDLES = (
+        ('translations.js',
+            {'filter': 'mediagenerator.filters.i18n.I18N'},
+        ),
+    )
+
+Include the bundle in your template, specifying the language you want:
+
+.. sourcecode:: django
+
+    {% load media %}
+    {% include_media 'translations.js' language='en' %}
 
 Django templates (TODOC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -375,3 +397,4 @@ The ``concat_dev_ouput`` option allows to enforce concatenation. The ``dev_outpu
 .. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 1\: pyjs: http://www.allbuttonspressed.com/blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-1-pyjs
 .. _Offline HTML5 canvas app in Python with django-mediagenerator, Part 2\: Drawing: http://www.allbuttonspressed.com/blog/django/2010/11/Offline-HTML5-canvas-app-in-Python-with-django-mediagenerator-Part-2-Drawing
 .. _HTML5 offline manifests with django-mediagenerator: http://www.allbuttonspressed.com/blog/django/2010/11/HTML5-offline-manifests-with-django-mediagenerator
+.. _Django's javascript_catalog: https://docs.djangoproject.com/en/1.2/topics/i18n/internationalization/#django.views.i18n.javascript_catalog
