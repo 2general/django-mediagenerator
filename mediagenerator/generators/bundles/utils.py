@@ -66,10 +66,11 @@ def _render_include_media(bundle, variation):
     urls = media_urls(_get_key(bundle, variation_map))
 
     if filetype == 'css':
+        tag_end = ' />' if MEDIA_HTML_FORMAT == 'xhtml' else '>'
         if media_types:
-            tag = u'<link rel="stylesheet" type="text/css" href="%%s" media="%s" />' % media_types
+            tag = u'<link rel="stylesheet" type="text/css" href="%%s" media="%s"%s' % (media_types, tag_end)
         else:
-            tag = u'<link rel="stylesheet" type="text/css" href="%s" />'
+            tag = u'<link rel="stylesheet" type="text/css" href="%%s"%s' % tag_end
     elif filetype == 'js':
         tag = u'<script type="text/javascript" src="%s"></script>'
     else:
