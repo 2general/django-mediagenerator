@@ -10,8 +10,33 @@ from subprocess import Popen, PIPE
 
 class DustFilter(Filter):
     """
-    Requires Dust.js compiler (dustc) which is current available in this Dust.js fork:
-    https://github.com/akaihola/dustjs/
+    Requires Dust.js compiler (dustc) which is currently available in this 
+    Dust.js fork: https://github.com/akaihola/dustjs/
+    
+    Filter looks for the Dust.js templates in both the app template directories 
+    and in your static file directories defined by GLOBAL_MEDIA_DIRS and 
+    IGNORE_APP_MEDIA_DIRS settings.
+    
+    USAGE:
+    
+    settings.py:
+    (
+        'my_bundle.js',
+        {
+            'filter': 'mediagenerator.filters.dust.DustFilter',
+            'name': 'my_dust_template.html',
+            'template_name': 'my_template_key',
+        },
+        'scripts/my_app.js',
+    )
+    
+    Django template:
+    {% include_media "my_bundle.js" %}
+    <script type="text/javascript">
+    dust.render("my_template_key", context, function(err, out) {
+        // process result
+    });
+    </script>
     """
     def __init__(self, **kwargs):
         self.config(kwargs, name=kwargs["name"], path=(), template_name=kwargs.get("template_name"))
