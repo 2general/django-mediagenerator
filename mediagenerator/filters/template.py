@@ -3,6 +3,7 @@ from mediagenerator.generators.bundles.base import Filter
 
 class Template(Filter):
     def __init__(self, **kwargs):
+        self.config(kwargs, context={})
         super(Template, self).__init__(**kwargs)
 
     def get_output(self, variation):
@@ -14,6 +15,6 @@ class Template(Filter):
         return self._template(content)
 
     def _template(self, content):
-        context = Context({})
+        context = Context(self.context)
         context.autoescape = self.filetype == 'html'
         return DjangoTemplate(content).render(context)
