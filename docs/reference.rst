@@ -378,7 +378,22 @@ Django templates (TODOC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 **Filter:** ``mediagenerator.filters.tempate.Template``
 
-Auto-applied to ``.html`` files. Uses Django's template language to render the contents of the given file. Can also be specified manually for individual files with the explicit dict filter syntax (see `MEDIA_BUNDLES`_). In that case, the input files are listed via ``input``. TODO: document me :)
+Auto-applied to ``.html`` files. Uses Django's template language to render the
+contents of the given file. Can also be specified manually for individual files
+with the explicit dict filter syntax (see `MEDIA_BUNDLES`_). In that case, the
+input files are listed via ``input``, and rendering context can be provided via
+``context``. TODO: document me :)
+
+An example::
+
+    from django.conf import settings
+
+    MEDIA_BUNDLES = (
+        ('main.js',
+            {'filter': 'mediagenerator.filters.template.Template',
+             'input': 'settings.js',
+             'context': {'settings': settings}}),
+        # ...
 
 
 Combining files in dev mode
