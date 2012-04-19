@@ -38,3 +38,4 @@ IGNORE_APP_MEDIA_DIRS = getattr(settings, 'IGNORE_APP_MEDIA_DIRS',
     ('django.contrib.admin',))
 
 MEDIA_DEV_MODE = getattr(settings, 'MEDIA_DEV_MODE', settings.DEBUG)
+MEDIA_DEV_REFRESH_TTL = getattr(settings, 'MEDIA_DEV_REFRESH_TTL', 1.0)

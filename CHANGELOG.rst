@@ -1,6 +1,12 @@
 Changelog
 =============================================================
 
+After version 1.11
+-------------------------------------------------------------
+
+* Added Dust support (requires a version with dustc)
+* Improved the performance of development mode with caching
+
 Version 1.11
 -------------------------------------------------------------
 
