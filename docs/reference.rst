@@ -108,6 +108,24 @@ MEDIA_DEV_MODE
 ^^^^^^^^^^^^^^
 A boolean which defines whether we're on the development or production server. If ``True`` media files aren't combined and compressed in order to simplify debugging.
 
+In development mode,
+caching is used to prevent re-scanning files on every request.
+If a file is moved from an app to another while preserving the relative path,
+the server should be restarted.
+Also, if a page is loaded after changing assets
+but before the refresh timeout (see MEDIA_DEV_REFRESH_TTL_) has elapsed,
+wrong media may be served.
+
+
+MEDIA_DEV_REFRESH_TTL
+^^^^^^^^^^^^^^^^^^^^^
+To speed up development mode,
+the generated names and backend mappings
+are kept for a default time-to-live of one second
+before they are regenerated.
+The time-to-live can be customized using this variable (default 1.0).
+
+See also MEDIA_DEV_MODE_.
 
 Settings for non-standard project structures
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

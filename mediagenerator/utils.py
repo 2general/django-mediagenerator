@@ -1,13 +1,14 @@
 from . import settings as media_settings
 from .settings import (GLOBAL_MEDIA_DIRS, PRODUCTION_MEDIA_URL,
     IGNORE_APP_MEDIA_DIRS, MEDIA_GENERATORS, DEV_MEDIA_URL,
-    GENERATED_MEDIA_NAMES_MODULE)
+    GENERATED_MEDIA_NAMES_MODULE, MEDIA_DEV_REFRESH_TTL)
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
 from django.utils.http import urlquote
 import os
 import re
+from time import time
 
 try:
     NAMES = import_module(GENERATED_MEDIA_NAMES_MODULE).NAMES
@@ -28,7 +29,18 @@ def _load_generators():
             _generators_cache.append(backend)
     return _generators_cache
 
+# To speed up development mode, the generated names and backend mappings are
+# kept for a default timeout of one second before they are regenerated. If a
+# page is loaded after changing assets but before this timeout has elapsed,
+# wrong media may be served. Customize the timeout using the
+# MEDIA_DEV_REFRESH_TTL setting.
+_refresh_timestamp = 0
+
 def _refresh_dev_names():
+    global _refresh_timestamp
+    if time() - _refresh_timestamp < MEDIA_DEV_REFRESH_TTL:
+        # The time-to-live for the cache hasn't yet expired
+        return
     _generated_names.clear()
     _backend_mapping.clear()
     for backend in _load_generators():
@@ -39,6 +51,7 @@ def _refresh_dev_names():
             _generated_names.setdefault(key, [])
             _generated_names[key].append(versioned_url)
             _backend_mapping[url] = backend
+    _refresh_timestamp = time()
 
 class _MatchNothing(object):
     def match(self, content):
@@ -113,13 +126,20 @@ def get_media_dirs():
         _media_dirs_cache.extend(media_dirs)
     return _media_dirs_cache
 
+# To speed up development mode, mappings from relative to full paths are
+# cached. If a file is moved from an app to another while preserving the
+# relative path, this will break things unless the server is restarted.
+_find_file_cache = {}
+
 def find_file(name, media_dirs=None):
-    if media_dirs is None:
-        media_dirs = get_media_dirs()
-    for root in media_dirs:
-        path = os.path.normpath(os.path.join(root, name))
-        if os.path.isfile(path):
-            return path
+    if name not in _find_file_cache:
+        if media_dirs is None:
+            media_dirs = get_media_dirs()
+        for root in media_dirs:
+            path = os.path.normpath(os.path.join(root, name))
+            if os.path.isfile(path):
+                _find_file_cache[name] = path
+    return _find_file_cache.get(name)
 
 def read_text_file(path):
     fp = open(path, 'r')
