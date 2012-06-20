@@ -1,4 +1,4 @@
 docs/_build
 *.pyc
 dist/
-django_mediagenerator.egg_info/
+django_mediagenerator.egg-info/
