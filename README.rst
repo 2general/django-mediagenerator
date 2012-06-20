@@ -31,7 +31,7 @@ See `CHANGELOG.rst`_ for the complete changelog.
 .. _Jinja2: http://jinja.pocoo.org/
 .. _Dust.js: http://akdubya.github.com/dustjs/
 .. _Hogan.js: http://twitter.github.com/hogan.js/
-.. _`a version with dustc`: https://github.com/akaihola/dustjs
+.. _`a version with dustc`: https://github.com/linkedin/dustjs
 .. _LESS: http://lesscss.org/
 .. _CHANGELOG.rst: https://bitbucket.org/wkornewald/django-mediagenerator/src/tip/CHANGELOG.rst
 .. _UglifyJS: https://github.com/mishoo/UglifyJS/

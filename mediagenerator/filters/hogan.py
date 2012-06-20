@@ -21,6 +21,7 @@ class HoganFilter(Filter):
     settings.py:
     (
         'my_bundle.js',
+        'hogan.js/lib/template.js',  # Hogan.js template parser
         {
             'filter': 'mediagenerator.filters.hogan.HoganFilter',
             'name': 'my_hogan_template.html'
