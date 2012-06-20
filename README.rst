@@ -10,7 +10,9 @@ Python/pyjs_, CoffeeScript_, and much more. Visit the
 Most important changes after version 1.11
 =============================================================
 
-* Added Dust_ support (requires `a version with dustc`_)
+* Added Dust.js_ support (requires `a version with dustc`_)
+* Added Hogan.js_ support
+* Added UglifyJS_ as a JavaScript compressor option
 * Improved the performance of development mode with caching
 
 Most important changes in version 1.11
@@ -27,7 +29,9 @@ See `CHANGELOG.rst`_ for the complete changelog.
 .. _pyjs: http://pyjs.org/
 .. _CoffeeScript: http://coffeescript.org/
 .. _Jinja2: http://jinja.pocoo.org/
-.. _Dust: http://akdubya.github.com/dustjs/
+.. _Dust.js: http://akdubya.github.com/dustjs/
+.. _Hogan.js: http://twitter.github.com/hogan.js/
 .. _`a version with dustc`: https://github.com/akaihola/dustjs
 .. _LESS: http://lesscss.org/
 .. _CHANGELOG.rst: https://bitbucket.org/wkornewald/django-mediagenerator/src/tip/CHANGELOG.rst
+.. _UglifyJS: https://github.com/mishoo/UglifyJS/
