@@ -27,6 +27,7 @@ class DustFilter(Filter):
     settings.py:
     (
         'my_bundle.js',
+        'dustjs-linkedin/dist/dust-core-0.6.0.js',  # Dust.js core library
         {
             'filter': 'mediagenerator.filters.dust.DustFilter',
             'name': 'my_dust_template.html',
