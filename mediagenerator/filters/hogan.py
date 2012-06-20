@@ -10,17 +10,11 @@ from hashlib import sha1
 from subprocess import Popen, PIPE
 
 
-class DustFilter(Filter):
+class HoganFilter(Filter):
     """
-    Requires Dust.js compiler (dustc) which is available in LinkedIn's Dust.js fork:
-
-        https://github.com/linkedin/dustjs/
-
-        npm install dustjs-linkedin
-
-    Filter looks for the Dust.js templates in both the app template directories
-    and in your static file directories defined by GLOBAL_MEDIA_DIRS and
-    IGNORE_APP_MEDIA_DIRS settings.
+    Filter looks for the Hogan.js templates in both the app template
+    directories and in your static file directories defined by
+    GLOBAL_MEDIA_DIRS and IGNORE_APP_MEDIA_DIRS settings.
 
     USAGE:
 
@@ -28,32 +22,35 @@ class DustFilter(Filter):
     (
         'my_bundle.js',
         {
-            'filter': 'mediagenerator.filters.dust.DustFilter',
-            'name': 'my_dust_template.html',
-            'template_name': 'my_template_key',
+            'filter': 'mediagenerator.filters.hogan.HoganFilter',
+            'name': 'my_hogan_template.html'
         },
         'scripts/my_app.js',
     )
 
     Django template:
+
     {% include_media "my_bundle.js" %}
     <script type="text/javascript">
-    dust.render("my_template_key", context, function(err, out) {
-        // process result
-    });
+    //
+    // NOTE: templates can be found in window.templates
+    //
+    var output = templates.my_hogan_template.render(context);
+    // do something with output
     </script>
     """
     def __init__(self, **kwargs):
-        self.config(kwargs, name=kwargs["name"], path=(), template_name=kwargs.get("template_name"))
+        self.config(kwargs, name=kwargs["name"], path=(),
+                    template_name=kwargs.get("template_name"))
         if isinstance(self.path, basestring):
             self.path = (self.path,)
 
         # we need to be able to mutate self.path
         self.path = list(self.path)
 
-        super(DustFilter, self).__init__(**kwargs)
+        super(HoganFilter, self).__init__(**kwargs)
 
-        # dustc can't cope with nonexistent directories, so filter them
+        # hulk can't cope with nonexistent directories, so filter them
         media_dirs = [directory for directory in get_media_dirs()
                       if os.path.exists(directory)]
         self.path += tuple(media_dirs)
@@ -88,14 +85,13 @@ class DustFilter(Filter):
         if hasattr(self, "mtime") and self.mtime == os.path.getmtime(path):
             return self._compiled
 
-        # compile with dustc
+        # compile with hulk
         try:
             shell = sys.platform == 'win32'
 
             relative_path = self._get_relative_path(path)
 
-            cmd = Popen(['dustc', relative_path,
-                        "--name=%s" % (self.template_name or relative_path)],
+            cmd = Popen(['hulk', '--wrapper', '1', relative_path],
                         stdin=PIPE, stdout=PIPE, stderr=PIPE,
                         shell=shell, universal_newlines=True,
                         cwd=settings.PROJECT_ROOT)
@@ -103,12 +99,16 @@ class DustFilter(Filter):
 
             self.mtime = os.path.getmtime(path)
 
-            # some dustc errors output to stdout, so we put both in the assertion message
-            assert cmd.wait() == 0, ('dustc returned errors:\n%s\n%s' % (error, output))
-            return output.decode('utf-8')
+            # some hulk errors output to stdout, so we put both in the assertion message
+            assert cmd.wait() == 0, ('hulk returned errors:\n%s\n%s' % (error, output))
+
+            result = output.decode('utf-8')
+            result = u"window.templates = window.templates || {}; %s" % result
+
+            return result
         except Exception, e:
-            raise ValueError("Failed to run Dust.js compiler for this "
-                "file. Please confirm that the \"dustc\" application is "
+            raise ValueError("Failed to run Hogan.js compiler for this "
+                "file. Please confirm that the \"hulk\" application is "
                 "on your path and that you can run it from your own command "
                 "line.\n"
                 "Error was: %s" % e)

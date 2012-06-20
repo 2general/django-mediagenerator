@@ -4,7 +4,9 @@ Changelog
 After version 1.11
 -------------------------------------------------------------
 
-* Added Dust support (requires a version with dustc)
+* Added Dust.js support (requires a version with dustc)
+* Added Hogan.js support
+* Added UglifyJS as a JavaScript compressor option 
 * Improved the performance of development mode with caching
 
 Version 1.11
