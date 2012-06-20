@@ -4,21 +4,26 @@ from django.utils.encoding import smart_str
 from mediagenerator.generators.bundles.base import Filter
 from mediagenerator.utils import get_media_dirs, find_file
 
-import os, sys
+import os
+import sys
 from hashlib import sha1
 from subprocess import Popen, PIPE
 
+
 class DustFilter(Filter):
     """
-    Requires Dust.js compiler (dustc) which is currently available in this 
-    Dust.js fork: https://github.com/akaihola/dustjs/
-    
-    Filter looks for the Dust.js templates in both the app template directories 
-    and in your static file directories defined by GLOBAL_MEDIA_DIRS and 
+    Requires Dust.js compiler (dustc) which is available in LinkedIn's Dust.js fork:
+
+        https://github.com/linkedin/dustjs/
+
+        npm install dustjs-linkedin
+
+    Filter looks for the Dust.js templates in both the app template directories
+    and in your static file directories defined by GLOBAL_MEDIA_DIRS and
     IGNORE_APP_MEDIA_DIRS settings.
-    
+
     USAGE:
-    
+
     settings.py:
     (
         'my_bundle.js',
@@ -29,7 +34,7 @@ class DustFilter(Filter):
         },
         'scripts/my_app.js',
     )
-    
+
     Django template:
     {% include_media "my_bundle.js" %}
     <script type="text/javascript">
@@ -73,7 +78,6 @@ class DustFilter(Filter):
         self._regenerate(debug=True)
         yield self.name + '.js', self._compiled_hash
 
-
     def _regenerate(self, debug=False):
         file_path = self._find_file(self.name)
         self._compiled = self._compile(file_path, debug=debug)
@@ -109,10 +113,8 @@ class DustFilter(Filter):
                 "line.\n"
                 "Error was: %s" % e)
 
-
     def _find_file(self, name):
         return find_file(name, media_dirs=self.path)
-
 
     def _get_relative_path(self, abs_path):
         """Given an absolute path, return a path relative to the
