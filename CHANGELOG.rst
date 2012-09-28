@@ -8,6 +8,9 @@ After version 1.11
 * Added Hogan.js support
 * Added UglifyJS as a JavaScript compressor option 
 * Improved the performance of development mode with caching
+* Always delimit JavaScript files with semicolons in bundles before running
+  compression. This fixes e.g. bundling underscore.js 1.4 after
+  jquery.history.js 1.7.
 
 Version 1.11
 -------------------------------------------------------------
