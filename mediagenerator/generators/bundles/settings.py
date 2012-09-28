@@ -5,6 +5,7 @@ DEFAULT_MEDIA_FILTERS = getattr(settings, 'DEFAULT_MEDIA_FILTERS', {
     'coffee': 'mediagenerator.filters.coffeescript.CoffeeScript',
     'css': 'mediagenerator.filters.cssurl.CSSURLFileFilter',
     'html': 'mediagenerator.filters.template.Template',
+    'js': 'mediagenerator.filters.js.AddSemicolonFilter',
     'py': 'mediagenerator.filters.pyjs_filter.Pyjs',
     'pyva': 'mediagenerator.filters.pyvascript_filter.PyvaScript',
     'sass': 'mediagenerator.filters.sass.Sass',
