@@ -11,6 +11,10 @@ After version 1.11
 * Always delimit JavaScript files with semicolons in bundles before running
   compression. This fixes e.g. bundling underscore.js 1.4 after
   jquery.history.js 1.7.
+* Added optional ``cache_urls`` dict to ``OFFLINE_MANIFEST`` value entries 
+  to specify URLs to be added verbatim to the manifest (originally created 
+  by Steve Schwarz at 
+  https://bitbucket.org/saschwarz/django-mediagenerator/changeset/19cb256038ff)
 
 Version 1.11
 -------------------------------------------------------------
