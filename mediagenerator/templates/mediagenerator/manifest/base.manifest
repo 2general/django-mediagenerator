@@ -8,6 +8,9 @@ CACHE:
 {{ url }}
 {% endfor %}
 {% endfor %}
+{% for url in cache_urls %}
+{{ url }}
+{% endfor %}
 {% endblock cache %}
 
 NETWORK:

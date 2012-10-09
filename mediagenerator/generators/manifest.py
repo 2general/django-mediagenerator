@@ -34,6 +34,9 @@ class Manifest(Generator):
                 cache.add(item)
         cache -= set(OFFLINE_MANIFEST.keys())
 
+        # include raw url entries in cache section
+        cache_urls = config.get('cache_urls', [])
+
         network = get_tuple(config, 'network', ('*',))
         fallback = get_tuple(config, 'fallback')
 
@@ -43,7 +46,7 @@ class Manifest(Generator):
         )
 
         content = render_to_string(template, {
-            'cache': cache, 'network': network, 'fallback': fallback,
+            'cache': cache, 'cache_urls': cache_urls, 'network': network, 'fallback': fallback,
         })
         return content, 'text/cache-manifest'
 
