@@ -13,6 +13,8 @@ Most important changes after version 1.11
 * Added Dust.js_ support (requires `a version with dustc`_)
 * Added Hogan.js_ support
 * Added UglifyJS_ as a JavaScript compressor option
+* Added yUglify_ (a Yahoo wrapper around UglifyJS and cssmin) as
+  a JavaScript and CSS compressor option
 * Improved the performance of development mode with caching
 * Always delimit JavaScript files with semicolons in bundles before running
   compression. This fixes e.g. bundling underscore.js 1.4 after
@@ -46,3 +48,4 @@ See `CHANGELOG.rst`_ for the complete changelog.
 .. _LESS: http://lesscss.org/
 .. _CHANGELOG.rst: https://bitbucket.org/wkornewald/django-mediagenerator/src/tip/CHANGELOG.rst
 .. _UglifyJS: https://github.com/mishoo/UglifyJS/
+.. _yUglify: https://github.com/yui/yuglify
