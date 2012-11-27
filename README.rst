@@ -17,6 +17,14 @@ Most important changes after version 1.11
 * Always delimit JavaScript files with semicolons in bundles before running
   compression. This fixes e.g. bundling underscore.js 1.4 after
   jquery.history.js 1.7.
+* ``{% get_media_urls %}`` assignment tag for getting bundle URLs as a list
+  in a template variable. Requires Django 1.4 or newer. Usage:
+
+    ..  code-block:: html+django
+        
+        {% get_media_urls "my_bundle.js" as bundle_urls %}
+        {% for url in bundle_urls %}...{% endfor %}
+    
 
 Most important changes in version 1.11
 =============================================================

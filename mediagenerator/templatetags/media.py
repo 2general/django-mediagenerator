@@ -43,3 +43,13 @@ def media_url(url):
 @register.filter
 def media_urls(url):
     return utils.media_urls(url)
+
+# requires Django 1.4
+if hasattr(register, "assignment_tag"):
+    @register.assignment_tag
+    def get_media_urls(bundle):
+        return utils.media_urls(bundle)
+else:
+    @register.simple_tag
+    def get_media_urls(*args):
+        raise NotImplementedError("get_media_urls tag requires Django 1.4 or later.")
