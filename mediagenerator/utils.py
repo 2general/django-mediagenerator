@@ -104,6 +104,8 @@ def media_urls(key, refresh=False):
     if media_settings.MEDIA_DEV_MODE:
         if refresh:
             _refresh_dev_names()
+        if not refresh and not _generated_names: # shell
+            _refresh_dev_names()
         return [DEV_MEDIA_URL + url for url in _generated_names[key]]
     return [PRODUCTION_MEDIA_URL + get_production_mapping()[key]]
 
